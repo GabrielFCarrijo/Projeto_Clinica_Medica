@@ -5,6 +5,16 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Home from "../pages/Home";
 
+import useAuth from "../hooks/useAuth";
+
+
+function Logado({ Item }) {
+  // Autenticação se está logado
+  const { logado } = useAuth();
+
+  return logado > 0 ? <Item /> : <Login />;
+}
+
 function RoutesApp() {
 
   return (
@@ -13,7 +23,7 @@ function RoutesApp() {
         <Routes>
           <Route exact path="/login" element={ <Login /> } />
           <Route path="/registrar" element={ <Register /> } />
-          <Route path="/" element={ <Home /> } />
+          <Route path="/" element={ <Logado Item={Home} /> } />
 
           <Route path="*" element={ <Login /> } />
         </Routes>

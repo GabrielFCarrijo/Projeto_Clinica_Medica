@@ -2,6 +2,7 @@
 
 const express = require('express') // O express permite que não seja necessário reiniciar a aplicação à cada alteração feita
 const app = express()
+const cors = require('cors');   // Adicionado o cors para conversar com o front
 const mongoose = require('mongoose') // O mongoose é usado para fazer a conexão no banco de dados
 const Usuario = require('./models/usuario')
 const Consulta = require('./models/consulta');
@@ -15,8 +16,9 @@ const templatePath = path.join(__dirname, '../templates')
 mongoose.connect('mongodb+srv://admin:Pi12345678@medical.b5row3q.mongodb.net/Medical?retryWrites=true&w=majority').then(() => {
     console.log(`Conectado ao MongoDB`)
     // Iniciando o Node
-    app.listen(3000, () => {
-        console.log(`Rodando na porta 3000`)
+    app.listen(5000, () => {
+        // Mudança de porta, pois o React usa a 3000
+        console.log(`Rodando na porta 5000`)
     })
 }).catch((error) => { // Se o mongoose não conseguir fazer o login no banco, dispara o erro
     console.log(error)
@@ -26,6 +28,10 @@ app.use(express.json())
 app.set('view engine', 'hbs')
 app.set("views", templatePath)
 app.use(express.urlencoded({ extended: false }))
+app.use(cors({  // Configurando o cors
+    credentials: true,
+    optionsSuccessStatus: 200
+}))
 
 //rotas
 app.get('/', (req, res) => {
