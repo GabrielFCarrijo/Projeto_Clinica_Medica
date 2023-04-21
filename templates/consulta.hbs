@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulta</title>
+</head>
+
+<body>
+
+    <h2>Consultas</h2>
+
+    <form action="/consulta" method="post" enctype="multipart/form-data">
+        <input type="text" name="email" placeholder="Email">
+        <br>
+        <input type="text" name="cpf" placeholder="CPF">
+        <br>
+        <input type="text" name="nome" placeholder="Nome">
+        <br>
+        <select name="tipo_consulta">
+            <option value="clinico_geral">Clínico geral</option>
+            <option value="pediatra">Pediatra</option>
+            <option value="cardiologista">Cardiologista</option>
+            <option value="neurologista">Neurologista</option>
+        </select>
+        <br>
+        <input type="datetime-local" name="data_hora" placeholder="Data e hora da consulta">
+        <br>
+        <input type="file" name="file" placeholder="Arquivo">
+        <br>
+        <input type="submit">
+    </form>
+
+</body>
+
+</html>

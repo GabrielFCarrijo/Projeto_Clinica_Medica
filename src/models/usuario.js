@@ -2,6 +2,15 @@ const mongoose = require('mongoose')
 
 const usuarioSchema = mongoose.Schema(
     {
+        email: {
+            type: String,
+            required: [true, "Informe um email"],
+            unique: true
+        },
+        cpf: {
+            type: String,
+            required: [true, "Informe uma cpf"]
+        },
         nome: {
             type: String,
             required: [true, "Informe um nome"]
