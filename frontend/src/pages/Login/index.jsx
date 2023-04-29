@@ -38,14 +38,12 @@ function Login () {
 
       <C.FormContainer>
         <Input
-          Text='Email'
           type='email'
-          placeholder='exemplo@email.com'
+          placeholder='Email'
           value={email}
           onChange={e => [setEmail(e.target.value), setErro('')]}
         />
         <Input
-          Text='Senha'
           type='password'
           placeholder='*****'
           value={senha}

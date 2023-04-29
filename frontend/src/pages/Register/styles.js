@@ -27,6 +27,26 @@ export const FormContainer = styled.div`
     width: 50%;
 `;
 
+export const LoginSpan = styled.span`
+  color: #fff;
+
+  font-size: medium;
+
+  & a {
+    &:link, &:visited {
+      color: #0a53b2;
+    }
+
+    &:hover {
+      color: #e8b23d;
+    }
+
+    &:active {
+      color: #0a53b2;
+    }
+  }
+`;
+
 export const ErrorLabel = styled.span`
   margin: 8px;
 

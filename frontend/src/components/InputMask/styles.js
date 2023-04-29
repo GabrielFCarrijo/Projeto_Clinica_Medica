@@ -1,7 +1,8 @@
+import InputMask from 'react-input-mask';
 import styled from 'styled-components';
 
 
-export const Input = styled.input`
+export const MaskInput = styled(InputMask)`
   font-size: 1rem;
   margin: 1rem 0;
 
@@ -16,3 +17,4 @@ export const Input = styled.input`
   border-bottom: 2px #fff solid;
   padding: 10px 16px;
 `;
+

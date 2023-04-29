@@ -24,10 +24,9 @@ export function AuthProvider({ children }) {
   async function login(email, senha) {
     // Pega o usuario
     const hasUser = await http.get('/usuario')
-      .then(res => res.data)
-      .then(users => users.find(users.email === email && users.senha === senha))
+      .then(res => res.data.find(u => u.email === email && u.senha === senha))
       .catch(err => console.log(err));
-    
+
     if (hasUser) {
       // Verifica e se existe ele coloca no localStorage
       const token = Math.random().toString(36).substring(2);
@@ -43,8 +42,7 @@ export function AuthProvider({ children }) {
   async function registrar(nome, cpf, email, senha, tipo='P') {
     // Verifica se já há esse email cadastrado
     const hasUser = await http.get('/usuario')
-      .then(res => res.data)
-      .then(users => users.find(users.email === email))
+      .then(res => res.data.some(u => u.email === email))
       .catch(err => console.log(err));
     
     if (hasUser) return 'Já há usuário com esse Email cadastrado';
