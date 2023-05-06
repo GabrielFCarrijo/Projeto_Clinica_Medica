@@ -11,7 +11,7 @@ const GlobalStyle = createGlobalStyle`
   }
 
   body {
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     color: #969696;
     background-image: linear-gradient( to top right, #000, #515050);

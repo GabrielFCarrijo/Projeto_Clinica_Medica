@@ -14,12 +14,24 @@ export const HomeBody = styled.div`
   display: flex;
   flex-direction: column;
   text-align: center;
+  align-items: center;
 
+  min-height: 45vh;
   padding: 2rem 0;
 
   color: #222;
   background-color: #fff;
 `;
+
+
+export const Acessos = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+
+  width: 100%;
+`;
+
 
 export const Footer = styled.footer`
   display: flex;

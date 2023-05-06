@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom';
 import * as C from './styles';
 
 import useAuth from '../../hooks/useAuth';
-
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import InputMask from '../../components/InputMask';
@@ -87,7 +86,7 @@ function Register() {
         <C.ErrorLabel>{erro}</C.ErrorLabel>
         <C.LoginSpan>Já possui conta?
           <Link to='/login'>
-            &nbsp;Logue
+            &nbsp;Entre
           </Link>
         </C.LoginSpan>
         <Button
