@@ -9,12 +9,12 @@ export function AuthProvider({ children }) {
 
   useEffect(() => {
     // Toda vez que inicializar, verificar se há usuário
-    const userToken = localStorage.getItem('user_token');
-  
+    const userToken = JSON.parse(localStorage.getItem('user_token'));
+
     if (userToken) {
       http.get('/usuario')
         .then(res => res.data.find(u => u.email === userToken.email))
-        .then(u => setUser(u))
+        .then(async u => setUser(await u))
         .catch(err => console.log(err));
     }
 
@@ -31,7 +31,7 @@ export function AuthProvider({ children }) {
       // Verifica e se existe ele coloca no localStorage
       const token = Math.random().toString(36).substring(2);
       localStorage.setItem('user_token', JSON.stringify({ email, token }))
-      setUser({ email, senha });
+      setUser(await hasUser);
       return;
     } else {
       return 'Email ou senha incorretos!';
@@ -54,16 +54,37 @@ export function AuthProvider({ children }) {
       cpf: cpf,
       tipo: tipo,
     })
-      .then(res => {
+      .then(async res => {
         const token = Math.random().toString(36).substring(2);
         const Email = res.data.email;
-        const Senha = res.data.senha;
         localStorage.setItem('user_token', JSON.stringify({ Email, token }))
-        setUser({ Email, Senha });
+        setUser(await res.data);
       })
       .catch(err => console.log(err));
 
     return;
+  }
+
+
+  async function atualizarPerfil(id, nome, cpf, email, senha, tipo) {
+    await http.put(`/usuario/${id}`, {
+      nome: nome,
+      cpf: cpf,
+      email: email,
+      senha: senha,
+      tipo: tipo
+    })
+      .then(async res => {
+        alert('Cadastro atualizado com sucesso!');
+        const token = Math.random().toString(36).substring(2);
+        const Email = res.data.email;
+        localStorage.setItem('user_token', JSON.stringify({ Email, token }))
+        setUser(await res.data);
+      })
+      .catch(err => {
+        alert('Algo de errado ao atualizar o cadastro aconteceu!');
+        console.log(err)
+      });
   }
 
 
@@ -76,7 +97,11 @@ export function AuthProvider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ user, logado: !!user, login, registrar, signout }}
+      value={{
+        user, logado: !!user,
+        login, registrar, signout,
+        atualizarPerfil
+      }}
     >
       {children}
     </AuthContext.Provider>

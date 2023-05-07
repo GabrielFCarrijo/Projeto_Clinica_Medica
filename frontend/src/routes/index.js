@@ -13,7 +13,7 @@ function Logado({ Item }) {
   // Autenticação se está logado
   const { logado } = useAuth();
 
-  // return <Item />; // Apenas para testes
+  return <Item />; // Apenas para testes
   return logado ? <Item /> : <Login />;
 }
 
@@ -25,8 +25,8 @@ function RoutesApp() {
         <Routes>
           <Route exact path="/login" element={ <Login /> } />
           <Route path="/registrar" element={ <Register /> } />
-          <Route path="/perfil" element={ <Perfil /> } />
-          <Route path="/" element={ <Logado Item={Home} /> } />
+          <Route path="/perfil" element={ <Logado Item={ Perfil } /> } />
+          <Route path="/" element={ <Logado Item={ Home } /> } />
 
           <Route path="*" element={ <Login /> } />
         </Routes>

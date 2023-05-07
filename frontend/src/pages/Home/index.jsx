@@ -27,6 +27,7 @@ function Home() {
           />
           <Acesso
             Text='Meu Perfil'
+            to='/perfil'
             Icon={ AiOutlineUser }
             bgColor='#696969'
           />

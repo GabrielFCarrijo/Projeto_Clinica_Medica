@@ -7,7 +7,7 @@ function Acesso({ Text, Icon, iconColor='#fff', color='#222', bgColor='transpare
 
   return (
     <C.Container>
-      <Link to={to}>
+      <Link to={ to }>
         <C.iconAcesso
           bgColor={ bgColor }
         >
