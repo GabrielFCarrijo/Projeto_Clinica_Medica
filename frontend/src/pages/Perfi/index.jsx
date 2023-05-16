@@ -1,5 +1,6 @@
 import React, {  useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import { cpf } from 'cpf-cnpj-validator';
 import * as C from './styles';
 
 import useAuth from '../../hooks/useAuth';
@@ -15,18 +16,32 @@ function Perfil() {
 
   const [nome, setNome] = useState('');
   const [email, setEmail] = useState('');
-  const [cpf, setCpf] = useState('');
+  const [Cpf, setCpf] = useState('');
+  const [erro, setErro] = useState('');
 
   useEffect(() => {
-    setNome(user.nome);
-    setEmail(user.email);
-    setCpf(user.cpf);
-  }, []);
+    if (user && atualizarPerfil) {
+      setNome(user.nome);
+      setEmail(user.email);
+      setCpf(user.cpf);
+      return () => {};
+    }
+  }, [user, atualizarPerfil]);
 
 
   async function handleAttPerfil() {
-    if (!nome || !email || !cpf) {
+    if (!nome || !email || !Cpf) {
       alert('Preencha todos os campos obrigatórios!');
+      return;
+    }
+
+    const numerosCpf = Cpf.replace(/[.-]/g, '');  // replace com expressão regular para remover os '.' e o '-' do CPF
+    if (isNaN(+numerosCpf)) {  // Verifica se o CPF foi preenchido completamente
+      setErro('Preencha o CPF corretamente!')
+      return;
+    }
+    if (!cpf.isValid(numerosCpf)) {
+      setErro('CPF inválido!');
       return;
     }
 
@@ -34,7 +49,7 @@ function Perfil() {
     const senha = await user.senha;
     const tipo = await user.tipo;
 
-    await atualizarPerfil(id, nome, cpf, email, senha, tipo);
+    await atualizarPerfil(id, nome, Cpf, email, senha, tipo);
 
     navigate('/');
   }
@@ -44,26 +59,26 @@ function Perfil() {
     <C.Container>
       <Header />
       <C.PerfilBody>
-
         <C.FormContainer>
           <Input
             type='text'
             placeholder='Nome'
             value={ nome }
-            onChange={e => setNome(e.target.value)}
+            onChange={ e => [setNome(e.target.value), setErro('')] }
           />
           <Input
             type='email'
             placeholder='exemplo@email.com'
             value={ email }
-            onChange={e => setEmail(e.target.value)}
+            onChange={ e => [setEmail(e.target.value), setErro('')] }
           />
           <InputMask
             placeholder='123.456.789-00'
             mask='999.999.999-99'
-            value={ cpf }
-            onChange={e => setCpf(e.target.value)}
+            value={ Cpf }
+            onChange={ e => [setCpf(e.target.value), setErro('')] }
           />
+          <C.ErrorLabel>{ erro }</C.ErrorLabel>
           <Button
             Text='Atualizar Perfil'
             onClick={ handleAttPerfil }

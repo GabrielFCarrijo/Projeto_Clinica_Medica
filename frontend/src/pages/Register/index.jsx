@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import { cpf } from 'cpf-cnpj-validator';
 import * as C from './styles';
 
 import useAuth from '../../hooks/useAuth';
@@ -17,20 +18,23 @@ function Register() {
   const [email, setEmail] = useState('');
   const [senha, setSenha] = useState('');
   const [confirmar, setConfirmar] = useState('');
-  const [cpf, setCpf] = useState('');
+  const [Cpf, setCpf] = useState('');
   const [erro, setErro] = useState('');
 
   async function handleRegistrar() {
-    if (!nome || !email || !senha || !confirmar || !cpf) {
+    if (!nome || !email || !senha || !confirmar || !Cpf) {
       setErro('Preencha todos os campos!');
       return;
     }
 
-    const numerosCpf = cpf.replace(/[.-]/g, '');  // replace com expressão regular para remover os '.' e o '-' do CPF
-
+    const numerosCpf = Cpf.replace(/[.-]/g, '');  // replace com expressão regular para remover os '.' e o '-' do CPF
     if (isNaN(+numerosCpf)) {  // Verifica se o CPF foi preenchido completamente
       setErro('Preencha o CPF corretamente!')
-      return
+      return;
+    }
+    if (!cpf.isValid(numerosCpf)) {
+      setErro('CPF inválido!');
+      return;
     }
 
     if (senha !== confirmar) {
@@ -57,31 +61,31 @@ function Register() {
           type='text'
           placeholder='Nome'
           value={ nome }
-          onChange={e => [setNome(e.target.value), setErro('')]}
+          onChange={ e => [setNome(e.target.value), setErro('')] }
         />
         <Input
           type='email'
           placeholder='exemplo@email.com'
           value={ email }
-          onChange={e => [setEmail(e.target.value), setErro('')]}
+          onChange={ e => [setEmail(e.target.value), setErro('')] }
         />
         <InputMask
           placeholder='CPF'
           mask='999.999.999-99'
-          value={ cpf }
-          onChange={e => [setCpf(e.target.value), setErro('')]}
+          value={ Cpf }
+          onChange={ e => [setCpf(e.target.value), setErro('')] }
         />
         <Input
           type='password'
           placeholder='Senha'
           value={ senha }
-          onChange={e => [setSenha(e.target.value), setErro('')]}
+          onChange={ e => [setSenha(e.target.value), setErro('')] }
         />
         <Input
           type='password'
           placeholder='Confirmar senha'
           value={ confirmar }
-          onChange={e => [setConfirmar(e.target.value), setErro('')]}
+          onChange={ e => [setConfirmar(e.target.value), setErro('')] }
         />
         <C.ErrorLabel>{ erro }</C.ErrorLabel>
         <C.LoginSpan>Já possui conta?

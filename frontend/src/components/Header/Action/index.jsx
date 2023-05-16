@@ -5,9 +5,9 @@ function Action({ Icon, onClick }) {
 
   return (
     <C.Action
-      onClick={onClick}
+      onClick={ onClick }
     >
-      <Icon size={28} />
+      <Icon size={ 28 } />
     </C.Action>
   );
 

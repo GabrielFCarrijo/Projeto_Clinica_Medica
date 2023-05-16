@@ -28,11 +28,11 @@ function Header() {
         {/* Icone de notificação que ainda não vai funcionar por enquanto */}
         <Action
           Icon={ true ? IoIosNotifications : IoIosNotificationsOutline }
-          onClick={() => console.log('Clicou em notificações')}
+          onClick={ () => console.log('Clicou em notificações') }
         />
         <Action
           Icon={ BiLogOut }
-          onClick={handleSignout}
+          onClick={ handleSignout }
         />
       </C.Actions>
     </C.Header>

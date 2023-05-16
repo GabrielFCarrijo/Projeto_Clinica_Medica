@@ -16,10 +16,10 @@ function InputMask({ mask, value, placeholder, onChange }) {
   return (
     <C.MaskInput
       type='text'
-      mask={mask}
-      value={value}
-      placeholder={placeholder}
-      onChange={onChange}
+      mask={ mask }
+      value={ value }
+      placeholder={ placeholder }
+      onChange={ onChange }
     /> 
   );
 

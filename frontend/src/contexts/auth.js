@@ -7,12 +7,12 @@ export function AuthProvider({ children }) {
 
   const [user, setUser] = useState('');
 
-  useEffect(() => {
+  useEffect(async () => {
     // Toda vez que inicializar, verificar se há usuário
     const userToken = JSON.parse(localStorage.getItem('user_token'));
 
     if (userToken) {
-      http.get('/usuario')
+      await http.get('/usuario')
         .then(res => res.data.find(u => u.email === userToken.email))
         .then(async u => setUser(await u))
         .catch(err => console.log(err));
@@ -83,7 +83,7 @@ export function AuthProvider({ children }) {
       })
       .catch(err => {
         alert('Algo de errado ao atualizar o cadastro aconteceu!');
-        console.log(err)
+        console.log(err);
       });
   }
 

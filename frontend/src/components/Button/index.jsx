@@ -6,11 +6,11 @@ function Button({ Text, type='button', fColor='#fff', bgColor='#e8b23d', value, 
 
   return (
     <C.Button
-      type={type}
-      value={value}
-      onClick={onClick}
-      fColor={fColor}
-      bgColor={bgColor}
+      type={ type }
+      value={ value }
+      onClick={ onClick }
+      fColor={ fColor }
+      bgColor={ bgColor }
     >
       {Text}
     </C.Button>

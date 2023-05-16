@@ -1,6 +1,6 @@
 import React from 'react';
-import { AiOutlineUser } from 'react-icons/ai';
-import { BsGeoAlt, BsWhatsapp } from 'react-icons/bs';
+import { AiOutlineUser, AiOutlineFileAdd } from 'react-icons/ai';
+import { BsWhatsapp } from 'react-icons/bs';
 import { HiOutlineHome } from 'react-icons/hi';
 import { TbFile, TbSocial } from 'react-icons/tb';
 import * as C from './styles';
@@ -21,8 +21,8 @@ function Home() {
             bgColor='#696969'
           />
           <Acesso
-            Text='Suporte'
-            Icon={ BsWhatsapp }
+            Text='Nova Consulta'
+            Icon={ AiOutlineFileAdd }
             bgColor='#696969'
           />
           <Acesso
@@ -40,12 +40,12 @@ function Home() {
           color='#fff'
         />
         <Acesso
-          Text='Onde Estamos'
-          Icon={ BsGeoAlt }
+          Text='Suporte'
+          Icon={ BsWhatsapp }
           color='#fff'
         />
         <Acesso
-          Text='Consultas'
+          Text='Minhas Consultas'
           Icon={ TbFile }
           color='#fff'
         />

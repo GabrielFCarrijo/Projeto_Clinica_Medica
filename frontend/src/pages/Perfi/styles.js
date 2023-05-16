@@ -21,3 +21,14 @@ export const FormContainer = styled.div`
 
   width: 50%;
 `;
+
+
+export const ErrorLabel = styled.span`
+  margin: 8px;
+
+  color: red;
+
+  font-size: large;
+  font-weight: 500;
+  font-style: italic;
+`;

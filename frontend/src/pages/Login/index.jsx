@@ -40,13 +40,13 @@ function Login () {
           type='email'
           placeholder='Email'
           value={ email }
-          onChange={e => [setEmail(e.target.value), setErro('')]}
+          onChange={ e => [setEmail(e.target.value), setErro('')] }
         />
         <Input
           type='password'
           placeholder='*****'
           value={ senha }
-          onChange={e => [setSenha(e.target.value), setErro('')]}
+          onChange={ e => [setSenha(e.target.value), setErro('')] }
         />
         <C.ErrorLabel>{ erro }</C.ErrorLabel>
         <C.RegisterSpan>Não tem conta?
