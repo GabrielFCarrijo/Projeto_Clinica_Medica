@@ -39,7 +39,7 @@ export function AuthProvider({ children }) {
   }
 
 
-  async function registrar(nome, cpf, email, senha, tipo='P') {
+  async function registrar(nome, cpf, email, senha, tipo='paciente') {
     // Verifica se já há esse email cadastrado
     const hasUser = await http.get('/usuario')
       .then(res => res.data.some(u => u.email === email))
@@ -65,6 +65,23 @@ export function AuthProvider({ children }) {
     return;
   }
 
+  async function cadastrarUserInterno(tipo, nome, cpf, email, senha) {
+
+    try {
+      const response = await http.post('/usuario', {
+        tipo: tipo,
+        nome: nome,
+        cpf: cpf,
+        email: email,
+        senha: senha
+      });
+      return response.data;
+    } catch (err) {
+      console.log(err);
+      throw err; 
+    }
+
+  }
 
   async function atualizarPerfil(id, nome, cpf, email, senha, tipo) {
     await http.put(`/usuario/${id}`, {
@@ -87,7 +104,6 @@ export function AuthProvider({ children }) {
       });
   }
 
-
   async function signout() {
     // deslogar
     setUser(null);
@@ -100,7 +116,7 @@ export function AuthProvider({ children }) {
       value={{
         user, logado: !!user,
         login, registrar, signout,
-        atualizarPerfil
+        atualizarPerfil,cadastrarUserInterno
       }}
     >
       {children}

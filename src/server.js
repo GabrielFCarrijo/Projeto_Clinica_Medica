@@ -33,20 +33,6 @@ app.use(cors({  // Configurando o cors
     optionsSuccessStatus: 200
 }))
 
-//rotas
-app.get('/', (req, res) => {
-    //    res.send('Rota Inicial')
-    res.render('login')
-})
-
-app.get('/cadastro', (req, res) => {
-    res.render('cadastro')
-})
-
-app.get('/consulta', (req, res) => {
-    res.render('consulta')
-})
-
 // login
 app.post("/login", async (req, res) => {
     try {
@@ -76,83 +62,8 @@ app.post('/cadastro', async (req, res) => {
     }
 })
 
-// crud usuário
-// salva
-app.post('/usuario', async (req, res) => {
-    try {
-        const usuarioExistente = await Usuario.findOne({ email: req.body.email });
-        if (usuarioExistente) {
-            return res.status(400).json({ message: 'Já existe um usuário com esse email' });
-        }
-        const usuario = await Usuario.create(req.body);
-        res.status(200).json(usuario);
-    } catch (error) {
-        console.log(error.message);
-        res.status(500).json({ message: error.message });
-    }
-});
-
-
-
-// busca todos
-app.get('/usuario', async (req, res) => {
-    try {
-        const usuario = await Usuario.find({})
-        res.status(200).json(usuario)
-    } catch (error) {
-        res.status(500).json({ message: error.message })
-    }
-})
-
-// busca apenas um
-app.get('/usuario/:id', async (req, res) => {
-    try {
-        const { id } = req.params
-        const usuario = await Usuario.findById(id)
-        res.status(200).json(usuario)
-    } catch (error) {
-        res.status(500).json({ message: error.message })
-    }
-})
-
-// update
-app.put('/usuario/:id', async (req, res) => {
-    try {
-        const { id } = req.params
-        const usuario = await Usuario.findByIdAndUpdate(id, req.body)
-
-        // se não encontrou um id correspondente
-        if (!usuario) {
-            return res.status(404).json({ message: `Usuário não encontrado` })
-        }
-
-        // se encontrou
-        const usuarioAtualizado = await Usuario.findById(id)
-        res.status(200).json(usuarioAtualizado)
-
-    } catch (error) {
-        res.status(500).json({ message: error.message })
-    }
-})
-
-// delete
-app.delete('/usuario/:id', async (req, res) => {
-    try {
-        const { id } = req.params
-        const usuario = await Usuario.findByIdAndDelete(id)
-
-        // se não encontrou um id correspondente
-        if (!usuario) {
-            return res.status(404).json({ message: `Usuário não encontrado` })
-        }
-
-        // se encontrou
-        res.status(200).json(usuario)
-
-    } catch (error) {
-        res.status(500).json({ message: error.message })
-    }
-})
+const usuarioRouter = require('./routes/usuario')
+app.use('/usuario', usuarioRouter)
 
 // **************************************************************************
 

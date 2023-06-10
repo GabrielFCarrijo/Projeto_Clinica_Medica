@@ -2,7 +2,7 @@ import React from 'react';
 import * as C from './styles';
 
 
-function ConsultaForm() {
+function Consulta() {
 
   return (
     <C.FormContainer>
@@ -13,4 +13,4 @@ function ConsultaForm() {
 }
 
 
-export default ConsultaForm;
+export default Consulta;

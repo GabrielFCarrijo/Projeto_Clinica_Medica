@@ -5,6 +5,8 @@ import Login from "../pages/Login";
 import Register from "../pages/Register";
 import Home from "../pages/Home";
 import Perfil from "../pages/Perfi";
+import Usuario from "../pages/Usuario"
+import Consulta from "../pages/Consulta"
 
 import useAuth from "../hooks/useAuth";
 
@@ -27,6 +29,8 @@ function RoutesApp() {
           <Route path="/registrar" element={ <Register /> } />
           <Route path="/perfil" element={ <Logado Item={ Perfil } /> } />
           <Route path="/" element={ <Logado Item={ Home } /> } />
+          <Route path="/usuario" element={ <Logado Item={ Usuario } /> } />
+          <Route path="/consulta" element={ <Logado Item={ Consulta } /> } />
 
           <Route path="*" element={ <Login /> } />
         </Routes>

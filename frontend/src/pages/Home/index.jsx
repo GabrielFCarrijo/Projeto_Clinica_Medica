@@ -15,19 +15,26 @@ function Home() {
       <Header />
       <C.HomeBody>
         <C.Acessos>
-          <Acesso
-            Text='Redes Sociais'
-            Icon={ TbSocial }
+        <Acesso
+            Text='Nova Consulta'
+            Icon={ AiOutlineFileAdd }
+            to=''
             bgColor='#696969'
           />
           <Acesso
-            Text='Nova Consulta'
-            Icon={ AiOutlineFileAdd }
+            Text='Minhas Consultas'
+            Icon={ TbFile }
             bgColor='#696969'
           />
           <Acesso
             Text='Meu Perfil'
             to='/perfil'
+            Icon={ AiOutlineUser }
+            bgColor='#696969'
+          />
+          <Acesso
+            Text='Cadastrar Usuário'
+            to='/usuario'
             Icon={ AiOutlineUser }
             bgColor='#696969'
           />
@@ -45,9 +52,9 @@ function Home() {
           color='#fff'
         />
         <Acesso
-          Text='Minhas Consultas'
-          Icon={ TbFile }
-          color='#fff'
+            Text='Redes Sociais'
+            Icon={ TbSocial }
+            color='#fff'
         />
       </C.Footer>
     </C.HomeContainer>

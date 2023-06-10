@@ -21,9 +21,9 @@ const usuarioSchema = mongoose.Schema(
         },
         tipo: {
             type: String,
-            required: [true],
-            default: "P"
-        }
+            enum: ['administrador', 'medico', 'paciente'],
+            default: 'paciente'
+        },
     },
     {
         timestamps: true
