@@ -2,31 +2,22 @@ const mongoose = require('mongoose')
 
 const consultaSchema = mongoose.Schema(
     {
-        email: {
+        data: {
             type: String,
-            required: [true, "Informe um email"]
+            required: [true, "Informe uma data"]
         },
-        cpf: {
+        paciente: {
             type: String,
-            required: [true, "Informe uma cpf"]
+            required: [true, "Informe um paciente"]
         },
-        nome: {
+        medico: {
             type: String,
-            required: [true, "Informe um nome"]
-        },
-        file: {
-            data: Buffer,
-            contentType: String
+            required: [true, "Informe um medico"]
         },
         tipo_consulta: {
             type: String,
-            enum: ['clinico_geral', 'pediatra', 'cardiologista', 'neurologista'],
-            required: [true, "Informe um tipo de consulta"]
+            enum: ['clinico_geral', 'pediatra', 'cardiologista', 'neurologista'],            
         },
-        data_hora: {
-            type: Date,
-            required: [true, "Informe a data e hora da consulta"]
-        }
     },
     {
         timestamps: true

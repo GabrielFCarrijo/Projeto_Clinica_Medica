@@ -104,6 +104,42 @@ export function AuthProvider({ children }) {
       });
   }
 
+  async function cadastrarConsulta(data, medico, paciente) {
+
+    try {
+      const response = await http.post('/consulta', {
+        data: data,
+        medico: medico,
+        paciente: paciente
+      });
+      return response.data;
+    } catch (err) {
+      console.log(err);
+      throw err; 
+    }
+
+  }
+
+  async function cadastraEmpresa(nome, endereco, horaAbertura, horaFechamento, cnpj, nomeFantasia, razaoSocial) {
+
+    try {
+      const response = await http.post('/empresa', {
+        nome: nome,
+        endereco: endereco,
+        horaAbertura: horaAbertura,
+        horaFechamento: horaFechamento,
+        cnpj: cnpj,
+        nomeFantasia: nomeFantasia,
+        razaoSocial: razaoSocial
+      });
+      return response.data;
+    } catch (err) {
+      console.log(err);
+      throw err; 
+    }
+
+  }
+
   async function signout() {
     // deslogar
     setUser(null);
@@ -116,7 +152,7 @@ export function AuthProvider({ children }) {
       value={{
         user, logado: !!user,
         login, registrar, signout,
-        atualizarPerfil,cadastrarUserInterno
+        atualizarPerfil,cadastrarUserInterno, cadastrarConsulta
       }}
     >
       {children}

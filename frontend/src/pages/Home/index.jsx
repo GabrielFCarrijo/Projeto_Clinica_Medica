@@ -18,7 +18,7 @@ function Home() {
         <Acesso
             Text='Nova Consulta'
             Icon={ AiOutlineFileAdd }
-            to=''
+            to='/consulta'
             bgColor='#696969'
           />
           <Acesso
@@ -36,6 +36,12 @@ function Home() {
             Text='Cadastrar Usuário'
             to='/usuario'
             Icon={ AiOutlineUser }
+            bgColor='#696969'
+          />
+          <Acesso
+            Text='Empresa'
+            to='/empresa'
+            Icon={ TbFile }
             bgColor='#696969'
           />
         </C.Acessos>
